@@ -24,7 +24,11 @@ response = openai.ChatCompletion.create(
 print(response)
 
 question, answer = parse_riddle.parse(response['choices'][0]['message']['content'])
+print(question)
 
+solutionFile = open('solution.txt', 'w')
+solutionFile.write(answer)
+solutionFile.close()
 
 client = tweepy.Client(consumer_key=CONSUMER_KEY,
                        consumer_secret=CONSUMER_SECRET,
@@ -32,6 +36,6 @@ client = tweepy.Client(consumer_key=CONSUMER_KEY,
                        access_token_secret=ACCESS_TOKEN_SECRET)
 
 # Replace the text with whatever you want to Tweet about
-response = client.create_tweet(question)
+response = client.create_tweet(text="test")
 
 print(response)
