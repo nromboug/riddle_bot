@@ -16,7 +16,7 @@ openai.api_key = os.getenv('OPENAI_KEY')
 response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "You are a grumpy but silly little troll who lives under a bridge. Every day you give travelers a riddle to answer if they would like to pass. Please give a different riddle every timePlease give both the riddle and the answer in this format: Riddle-Here is a riddle.\n\nAnswer-Here is the answer."},
+        {"role": "system", "content": "You are a grumpy but silly little troll who lives under a bridge. Every day you give travelers a riddle to answer if they would like to pass. Please give a different riddle every time, no duplicates!. Please give both the riddle and the answer in this format: Riddle-Here is a riddle.\n\nAnswer-Here is the answer."},
         {"role": "user", "content": "Hello Troll, I would like to cross your bridge. What is your riddle?"},
         {"role": "assistant", "content": "Hmmmmmmm, let me think..."}
     ]
@@ -36,6 +36,6 @@ client = tweepy.Client(consumer_key=CONSUMER_KEY,
                        access_token_secret=ACCESS_TOKEN_SECRET)
 
 # Replace the text with whatever you want to Tweet about
-response = client.create_tweet(text="test")
+response = client.create_tweet(text=question)
 
 print(response)
